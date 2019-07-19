@@ -126,31 +126,45 @@ class Employee():
     def UpdateSalary():
 
 #Program Start
-user = input("Please enter your Username")
+user = input("Please enter your Username").lower()
 while user != "exit":
-    action = input("How can I help you? (FindItem, AddItem, RemoveItem, UpdateItem)").lower()
-    while action != "exit":
-        #person = input("Enter your name here").lower()
-        if action == "finditem":
-            search = input("Would you like to find a item or all items?(one, all)").lower()
-            if search == "one":
-                Store.SearchOneitem()
-            elif search == "all":
-                Store.SearchAllitems()
+    role = input("Enter Role here").lower()#needs to change
+    if role == "tilloperator":
+        action = input("How can I help you? (FindItem, LogOut)").lower()
+        while action != "log out":
+            if action == "finditem":
+                search = input("Would you like to find a item or all items?(one, all)").lower()
+                if search == "one":
+                    Store.SearchOneitem()
+                elif search == "all":
+                    Store.SearchAllitems()
+                else:
+                    print("Please enter a valid action")
             else:
                 print("Please enter a valid action")
-        elif action == "additem":
-            Store.AddCopy()
-        elif action == "removeitem":
-            Store.DelCopy()
-        elif action == "updateitem":
-            update = input("What would you like to update? (Amount, Price)").lower()
-            if update == "amount":
+    elif role == "storemanager":
+        action = input("How can I help you? (AddItem, RemoveItem, LogOut)").lower()
+        while action != "log out":
+            if action == "additem":
+                Store.AddCopy()
+            elif action == "removeitem":
+                Store.DelCopy()
+            else :
+                print("Please enter a valid action")
+    elif role == "stockcontroller":
+        action = input("How can I help you? (UpdateStock, LogOut)").lower()
+        while action != "log out":
+            if action == "updatestock":
                 Store.UpCopy()
-            elif update == "price":
+            else:
+                print("Please enter a valid action")
+    elif role == "financialconsultant":
+        action = input("How can I help you? (UpdatePrice, LogOut)").lower()
+        while action != "log out":
+            if action == "updateprice":
                 Store.UpCost()
             else:
                 print("Please enter a valid action")
-        else:
-            print("Please enter a valid action")
-        action = input("How can I help you? (FindItem, AddItem, RemoveItem, UpdateItem)").lower()
+    else:
+        print("You do not have permission to access this program")
+    role = input("Enter Role here").lower()#needs to change
